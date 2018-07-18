@@ -45,18 +45,20 @@ myTCPserver         tcppython           39 minutes ago      Up 37 minutes       
 Where it can be seen the image used to run the container, the name of the container etc. In order to test it the examples given in the Scope part can be used.
 
 ## Monitoring
-The deployed server is provisioned with a monitoring tool that checks the status of the container. The container will be restarted automatically in case of failure, but if in the event that it gets exited for whatever reason there the user will be notified by email. For example:
+The deployed server is provisioned with a monitoring tool that checks the status of the container. The container will be restarted automatically in case of failure, but if in the event that it gets exited for whatever reason the user will be notified by email. Email example:
+Email Subject:
 ```
-Email Subject: CRITICAL: Docker Container: myTCPserver NOT Running
-
+CRITICAL: Docker Container: myTCPserver NOT Running
+````
 Body:
+```
 Docker Container stopped:
 NAMES               IMAGE               CREATED              STATUS                        COMMAND
 myTCPserver         tcppython           About a minute ago   Exited (137) 30 seconds ago   "python server.py"
 ````
 This is Health Check is done by a script that runs every 15 mins in crontab of root user, it accepts to parameters, one is the email address and the other one is the container name.
 ```
-#*/15 * * * * /root/deployment/healthCheck.sh gbadgo@gmail.com myTCPserver >/dev/null 2>&1
+#*/15 * * * * /root/deployment/healthCheck.sh my@email.com myTCPserver >/dev/null 2>&1
 ```
 
 # SW versions
