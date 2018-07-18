@@ -35,11 +35,11 @@ while True:
                 epoc = string[0]
                 # remove first [ from the date and convert to epoch
                 epoc = epoc[1:]
-		        dt = datetime.strptime(epoc, '%d/%m/%Y  %H:%M')
+		dt = datetime.strptime(epoc, '%d/%m/%Y  %H:%M')
                 timestamp = (dt - datetime(1970,1,1)).total_seconds()
                 
                 # remove fist blank space from message
-		        message = string[1]
+		message = string[1]
                 message = message[1:]
 		
                 # create a dictionary to store all the data
