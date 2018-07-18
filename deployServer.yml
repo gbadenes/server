@@ -60,6 +60,6 @@
       cron:
         name: "Health check for Docker"
         user: "root"
-        minute: "*/1" 
+        minute: "*/15" 
         job: "/root/deployment/healthCheck.sh gbadgo@gmail.com myTCPserver >/dev/null 2>&1"
 
