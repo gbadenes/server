@@ -2,7 +2,7 @@
 Python Dockerized TCP server parser.
 
 ## Scope
-The scope of the code is to deploy a Docker container is a given server (centos 7/RHEL) that listens to port TCP 4321, parses the received messages and prints the timestamp and the message body in JSON to the stdout.
+The scope of the code is to deploy a Docker container in a given server (CentOS7/RHEL) that listens to port TCP 4321, parses the received messages and prints the timestamp and the message body in JSON to the stdout.
 
 Format of the messages sent to the servers should have the following format:
 ```
