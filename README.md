@@ -58,10 +58,9 @@ myTCPserver         tcppython           About a minute ago   Exited (137) 30 sec
 ````
 This is Health Check is done by a script that runs every 15 mins in crontab of root user, it accepts to parameters, one is the email address and the other one is the container name.
 ```
-#*/15 * * * * /root/deployment/healthCheck.sh my@email.com myTCPserver >/dev/null 2>&1
+*/15 * * * * /root/deployment/healthCheck.sh my@email.com myTCPserver >/dev/null 2>&1
 ```
-
-# SW versions
+## SW versions
 * ansible 2.6.0
 * Docker version 1.13.1
 * Python 2.7.5
