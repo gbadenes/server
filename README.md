@@ -42,10 +42,11 @@ Output should be like the following:
 NAMES               IMAGE               CREATED             STATUS              COMMAND
 myTCPserver         tcppython           39 minutes ago      Up 37 minutes       "python server.py"
 ```
-Where it can be seen the image used to run the container, the name of the container etc. In order to test it the examples given in the Scope part can be used.
+Where it can be seen: the image used to run the container, the name of the container etc. In order to test it the examples given in the Scope part can be used.
 
 ## Monitoring
-The deployed server is provisioned with a monitoring tool that checks the status of the container. The container will be restarted automatically in case of failure, but if in the event that it gets exited for whatever reason the user will be notified by email. Email example:
+The deployed server is provisioned with a monitoring tool that checks the status of the container. The container will be restarted automatically in case of failure, but if in the event that it gets exited for whatever reason the user will be notified by email. _Email example:_
+
 Email Subject:
 ```
 CRITICAL: Docker Container: myTCPserver NOT Running
