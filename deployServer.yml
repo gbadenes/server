@@ -41,6 +41,16 @@
       args:
         chdir: /root/deployment
 
+    - name: Stop docker container if already exists
+      shell: docker stop myTCPserver
+      register: command_result
+      ignore_errors: True 
+
+    - name: Delete docker container if already exists
+      shell: docker rm myTCPserver
+      register: command_result
+      ignore_errors: True
+
     - name: Start docker container using image myTCPserver
       shell: docker run -d --name myTCPserver --restart on-failure -e HOST=`hostname` -p 4321:12345 tcppython
       args:
