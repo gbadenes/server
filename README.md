@@ -12,7 +12,7 @@ The output from the server will be like the following:
 ```
 {"timestamp": "EPOCH", "message": "MESSAGE BODY", "hostname": "hostname", "container": "docker container"}
 ```
-Example:
+Example of use:
 ```
 echo -n '[17/06/2018 12:30] Hello world!' | nc localhost 4321
 ```
@@ -30,7 +30,7 @@ In order to deploy the solution first set up the target server ip in the invento
 ```
 Then run the ansible playbook:
 ```
-ansible-playbook /ansible/deployServer.yml -i /ansible/inventory -u <username>
+ansible-playbook /ansible/deployServer.yml -i /ansible/inventory -u <username> -k -K
 ```
 ## Docker container
 Once playbook is run, ssh to target server set up in the inventory file and check that the docker container is running:
@@ -65,4 +65,10 @@ This is Health Check is done by a script that runs every 15 mins in crontab of r
 * Docker version 1.13.1
 * Python 2.7.5
 
+## Notes
+If server is given another string as input different to the following format:
+```
+[DD/MM/YYYY HH:MM] MESSAGE BODY
+```
+It wont promt any output or message you should Ctrl+c and send the message in the correct format.
 
