@@ -2,7 +2,7 @@
 Python Dockerized TCP server parser.
 
 ## Scope
-The scope of the code is to deploy a Docker container in a given server (CentOS7/RHEL) that listens to port TCP 4321, parses the received messages and prints the timestamp and the message body in JSON to the stdout.
+The scope of the code is to provision a server with a containerized service that listens to port TCP 4321, parses the received messages and prints the timestamp and the message body in JSON to the stdout.
 
 Format of the messages sent to the servers should have the following format:
 ```
@@ -60,6 +60,9 @@ This is Health Check is done by a script that runs every 15 mins in crontab of r
 ```
 */15 * * * * /root/deployment/healthCheck.sh my@email.com myTCPserver >/dev/null 2>&1
 ```
+
+## OS Distribution
+The target server OS Distribution used is CentOS 7, RHEL 7 is also valid.
 ## SW versions
 * ansible 2.6.0
 * Docker version 1.13.1
