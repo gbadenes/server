@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Monitor status of given Docker container
-# If status is Exited send an email to given email address as argument
-# example: ./healthCheck.sh <your@email.com>
+# If status is Exited send an email to given email address
+# example: ./healthCheck.sh <your@email.com> <container name>
 
 # Check there are arguments
 if [ $# -eq 0 ]
