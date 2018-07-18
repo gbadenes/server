@@ -1,0 +1,48 @@
+---
+- hosts: server
+
+  tasks:
+    - name: Install required RPM packages
+      yum:
+        name:
+          - docker
+          - mailx
+        state: present
+
+    - name: Ensure docker service is running and enabled
+      systemd:
+        state: started
+        enabled: yes
+        name: docker
+
+    - name: Create a landing directory
+      file:
+        path: /root/deployment
+        state: directory
+
+    - name: Copy TCP server script
+      copy:
+        src: /root/server.py
+        dest: /root/deployment/server.py
+
+    - name: Copy healthCheck script
+      copy:
+        src: /root/healthCheck.sh
+        dest: /root/deployment/healthCheck.sh
+        mode: u=rwx,g=rx,o=rx
+
+    - name: Copy Dockerfile to remote host
+      copy:
+        src: /root/Dockerfile
+        dest: /root/deployment/Dockerfile
+   
+    - name: Build Docker image named TCPpython
+      shell: docker build -t tcppython .
+      args:
+        chdir: /root/deployment
+
+    - name: Start docker container using image myTCPserver
+      shell: docker run -d --name myTCPserver --restart on-failure -e HOST=`hostname` -p 4321:12345 tcppython
+      args:
+        chdir: /root/deployment
+ 
