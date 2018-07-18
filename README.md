@@ -32,7 +32,7 @@ Then run the ansible playbook:
 ```
 ansible-playbook /ansible/deployServer.yml -i /ansible/inventory -u <username>
 ```
-## Checking Docker container
+## Docker container
 Once playbook is run, ssh to target server set up in the inventory file and check that the docker container is running:
 ```
 docker ps -a --format 'table {{.Names}}\t{{.Image}}\t{{.RunningFor}} ago\t{{.Status}}\t{{.Command}}' --filter status=running
@@ -42,8 +42,22 @@ Output should be like the following:
 NAMES               IMAGE               CREATED             STATUS              COMMAND
 myTCPserver         tcppython           39 minutes ago      Up 37 minutes       "python server.py"
 ```
-Where it can be seen the image used to run the container, the name of the container etc.
+Where it can be seen the image used to run the container, the name of the container etc. In order to test it the examples given in the Scope part can be used.
 
+## Monitoring
+The deployed server is provisioned with a monitoring tool that checks the status of the container. The container will be restarted automatically in case of failure, but if in the event that it gets exited for whatever reason there the user will be notified by email. For example:
+```
+Email Subject: CRITICAL: Docker Container: myTCPserver NOT Running
+
+Body:
+Docker Container stopped:
+NAMES               IMAGE               CREATED              STATUS                        COMMAND
+myTCPserver         tcppython           About a minute ago   Exited (137) 30 seconds ago   "python server.py"
+````
+This is Health Check is done by a script that runs every 15 mins in crontab of root user, it accepts to parameters, one is the email address and the other one is the container name.
+```
+#*/15 * * * * /root/deployment/healthCheck.sh gbadgo@gmail.com myTCPserver >/dev/null 2>&1
+```
 
 # SW versions
 * ansible 2.6.0
