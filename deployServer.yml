@@ -61,5 +61,5 @@
         name: "Health check for Docker"
         user: "root"
         minute: "*/15" 
-        job: "/root/deployment/healthCheck.sh gbadgo@gmail.com myTCPserver >/dev/null 2>&1"
+        job: "/root/deployment/healthCheck.sh your@email.com myTCPserver >/dev/null 2>&1"
 
